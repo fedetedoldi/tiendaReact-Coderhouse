@@ -2,11 +2,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import CartWidget from "../CartWidget/CartWidget";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -17,19 +18,29 @@ const NavBar = () => {
       className="bg-body-tertiary"
     >
       <Container>
-        <Navbar.Brand href="#home">Tienda Online</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Tienda Online</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Inicio</Nav.Link>
+            <Nav.Link>
+              <Link to="/">Inicio</Link>
+            </Nav.Link>
             <Nav.Link href="#link">Nosotros</Nav.Link>
             <NavDropdown title="Categorias" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Mujer</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Hombre
+              <NavDropdown.Item>
+                <Link to="/category/smartphones">Smartphones</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Infantil</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Deporte</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/category/laptops">Laptops</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/category/fragrances">Fragrances</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/category/skincare">Skincare</Link>
+              </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="#contact">Contacto</Nav.Link>
           </Nav>

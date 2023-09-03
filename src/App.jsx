@@ -1,10 +1,10 @@
 import MainLayout from "./Layout/MainLayout";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import MainRouter from "./routes/MainRouter";
 
 const App = () => {
   return (
     <MainLayout>
-      <ItemListContainer greeting="Bienvenidos a mi tienda Online." />
+      <MainRouter/>
     </MainLayout>
   );
 };

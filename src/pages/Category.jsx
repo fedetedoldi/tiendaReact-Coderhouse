@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
 import LoaderComponent from "../components/LoaderComponent/LoaderComponent";
@@ -8,23 +9,26 @@ function getProducts() {
   return axios.get("https://dummyjson.com/products");
 }
 
-const Home = () => {
+const Category = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { categoryId } = useParams();
   useEffect(() => {
     getProducts()
       .then((res) => {
-        setProducts(res.data.products);
+        console.log(res.data.products)
+        const dataFiltered = res.data.products.filter(item => item.category === categoryId);
+        setProducts(dataFiltered);
       })
-      .catch((err) => {})
-      .then(() => setLoading(false));
-  }, []);
+      .catch((err) => {}).finally(() => setLoading(false));
+  }, [categoryId]);
 
   return loading ? (
-    <LoaderComponent/>
+    <LoaderComponent />
   ) : (
     <ItemListContainer productsData={products} />
   );
 };
 
-export default Home;
+export default Category;

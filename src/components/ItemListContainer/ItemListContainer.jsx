@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import ListGroup from "react-bootstrap/ListGroup";
 import axios from "axios";
 
-const ItemListContainer = () => {
+const ItemListContainer = ({productsData}) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const showShortValue = (value = "", lengthMax = 45) => {
@@ -76,6 +76,7 @@ const ItemListContainer = () => {
               style={{ width: "18rem", height: "100%" }}
               className="text-center"
             >
+              <Card.Header><Button variant="outline-primary">+ info</Button></Card.Header>
               <Card.Img
                 variant="top"
                 src={product.thumbnail}
