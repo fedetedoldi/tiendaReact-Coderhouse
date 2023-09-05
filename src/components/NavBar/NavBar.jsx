@@ -27,7 +27,6 @@ const NavBar = () => {
             <Nav.Link>
               <Link to="/">Inicio</Link>
             </Nav.Link>
-            <Nav.Link href="#link">Nosotros</Nav.Link>
             <NavDropdown title="Categorias" id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <Link to="/category/smartphones">Smartphones</Link>
@@ -41,8 +40,19 @@ const NavBar = () => {
               <NavDropdown.Item>
                 <Link to="/category/skincare">Skincare</Link>
               </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/category/groceries">Groceries</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/category/home-decoration">Home-Decoration</Link>
+              </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#contact">Contacto</Nav.Link>
+            <Nav.Link href="#nosotros">
+              <Link to="/nosotros">Nosotros</Link>
+            </Nav.Link>
+            <Nav.Link href="#contact">
+              <Link to="/contacto">Contacto</Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Form inline>
