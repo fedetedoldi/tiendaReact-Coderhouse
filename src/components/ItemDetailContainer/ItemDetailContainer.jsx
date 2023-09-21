@@ -1,31 +1,12 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetailContainer = ({ productData }) => {
-  const [selectedQuantity, setSelectedQuantity] = useState(0);
-  const [productStock, setProductStock] = useState(productData.stock);
-
-  const handleIncrement = () => {
-    if (productData.stock > 0 && selectedQuantity < productData.stock) {
-      console.log(productData.stock);
-      setSelectedQuantity(selectedQuantity + 1);
-      setProductStock(productData.stock - 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (selectedQuantity > 0) {
-      console.log(productData.stock);
-      setSelectedQuantity(selectedQuantity - 1);
-      setProductStock(productData.stock + 1);
-    }
-  };
-
   return (
     <Container className="mt-4">
       <Row xs="auto">
@@ -57,14 +38,7 @@ const ItemDetailContainer = ({ productData }) => {
               </ListGroup>
             </Card.Body>
             <Card.Footer>
-              <Button variant="outline-dark" onClick={handleDecrement}>
-                -1
-              </Button>{" "}
-              <Button variant="dark">Agregar el carrito</Button>{" "}
-              <Button variant="outline-dark" onClick={handleIncrement}>
-                +1
-              </Button>
-              Cantidad seleccionada: {selectedQuantity}
+              <ItemCount/>
             </Card.Footer>
           </Card>
         </Col>
