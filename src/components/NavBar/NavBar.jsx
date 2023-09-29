@@ -8,8 +8,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CartWidget from "../CartWidget/CartWidget";
 import { Link } from "react-router-dom";
+import { useCollection } from "../../hooks/useCollection";
 
 const NavBar = () => {
+  const { data, loading } = useCollection("categories");
+
   return (
     <Navbar
       bg="dark"
@@ -19,39 +22,52 @@ const NavBar = () => {
     >
       <Container>
         <Navbar.Brand>
-          <Link to="/">Tienda Online</Link>
+          <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
+            Tienda Online
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link>
-              <Link to="/">Inicio</Link>
+              <Link
+                to="/"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Inicio
+              </Link>
             </Nav.Link>
-            <NavDropdown title="Categorias" id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to="/category/smartphones">Smartphones</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/category/laptops">Laptops</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/category/fragrances">Fragrances</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/category/skincare">Skincare</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/category/groceries">Groceries</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/category/home-decoration">Home-Decoration</Link>
-              </NavDropdown.Item>
-            </NavDropdown>
+            {loading ? null : (
+              <NavDropdown title="Categorias" id="basic-nav-dropdown">
+                {data[0].categories.map((category, index) => {
+                  return (
+                    <NavDropdown.Item key={index}>
+                      <Link
+                        to={`/category/${category}`}
+                        style={{ color: "inherit", textDecoration: "inherit" }}
+                      >
+                        {category}
+                      </Link>
+                    </NavDropdown.Item>
+                  );
+                })}
+              </NavDropdown>
+            )}
             <Nav.Link href="#nosotros">
-              <Link to="/nosotros">Nosotros</Link>
+              <Link
+                to="/nosotros"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Nosotros
+              </Link>
             </Nav.Link>
             <Nav.Link href="#contact">
-              <Link to="/contacto">Contacto</Link>
+              <Link
+                to="/contacto"
+                style={{ color: "inherit", textDecoration: "inherit" }}
+              >
+                Contacto
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

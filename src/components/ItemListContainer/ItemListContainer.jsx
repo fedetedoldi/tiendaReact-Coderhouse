@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import ListGroup from "react-bootstrap/ListGroup";
 
 const ItemListContainer = ({ productsData }) => {
   const navigate = useNavigate();
@@ -21,10 +20,20 @@ const ItemListContainer = ({ productsData }) => {
           return (
             <Col key={product.id} style={{ marginBottom: "20px" }}>
               <Card
+                bg="dark"
+                text="light"
                 border="light"
                 style={{ width: "18rem", height: "100%" }}
                 className="text-center"
               >
+                <Card.Header>
+                  <Button
+                    variant="outline-info"
+                    onClick={() => navigate(`/item/${product.id}`)}
+                  >
+                    + info
+                  </Button>
+                </Card.Header>
                 <Card.Img
                   variant="top"
                   src={product.thumbnail}
@@ -32,23 +41,12 @@ const ItemListContainer = ({ productsData }) => {
                 />
                 <Card.Body>
                   <Card.Title>{product.title}</Card.Title>
-                  <Card.Text>{showShortValue(product.description)}</Card.Text>
-                  <ListGroup variant="flush">
-                    <ListGroup.Item> Marca: {product.brand} </ListGroup.Item>{" "}
-                    <ListGroup.Item >$ {product.price} </ListGroup.Item>
-                    <ListGroup.Item>
-                      {" "}
-                      Disponibles: {product.stock} unidades{" "}
-                    </ListGroup.Item>
-                  </ListGroup>
+                  <Card.Subtitle>
+                    {showShortValue(product.description)}
+                  </Card.Subtitle>
                 </Card.Body>
                 <Card.Footer>
-                  <Button
-                    variant="outline-primary"
-                    onClick={() => navigate(`/item/${product.id}`)}
-                  >
-                    + info
-                  </Button>
+                  <Card.Text>Precio: ${product.price} </Card.Text>
                 </Card.Footer>
               </Card>
             </Col>
